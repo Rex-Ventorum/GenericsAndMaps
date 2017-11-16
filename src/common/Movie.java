@@ -9,7 +9,7 @@ import java.util.UUID;
  * field can be used for sorting. What will you do?
  * 
  */
-public class Movie  {
+public class Movie  implements Comparable<Movie>{
     private String movieId;
     private String title;
     private String director;
@@ -78,5 +78,10 @@ public class Movie  {
     @Override
     public String toString(){
       return movieId + ": \"" + title + "\" by "  + director;
+    }
+
+    @Override
+    public int compareTo(Movie target) {
+        return movieId.compareTo(target.getMovieId());
     }
 }
