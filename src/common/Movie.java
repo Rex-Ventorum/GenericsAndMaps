@@ -1,6 +1,7 @@
 package common;
 
 import java.util.Objects;
+import java.util.UUID;
 /**
  * For practice, add the required equals, hashCode and toString methods. Then
  * add a Comparable interface for the "natural" default sort order. Remember,
@@ -9,11 +10,16 @@ import java.util.Objects;
  * 
  */
 public class Movie  {
+    private String movieId;
     private String title;
     private String director;
 
+    public Movie(String movieId, String title, String director){
+        setMovieId(movieId); setTitle(title); setDirector(director);
+    }
+    
     public Movie(String title, String director){
-        setTitle(title); setDirector(director);
+        this(UUID.randomUUID().toString(), title,director);
     }
     
     public Movie() {
@@ -34,12 +40,19 @@ public class Movie  {
     public void setDirector(String director) {
         this.director = director;
     }
+    
+    public String getMovieId() {
+        return movieId;
+    }
+
+    public void setMovieId(String movieId) {
+        this.movieId = movieId;
+    }
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 73 * hash + Objects.hashCode(this.title);
-        hash = 73 * hash + Objects.hashCode(this.director);
+        int hash = 5;
+        hash = 83 * hash + Objects.hashCode(this.movieId);
         return hash;
     }
 
@@ -55,17 +68,15 @@ public class Movie  {
             return false;
         }
         final Movie other = (Movie) obj;
-        if (!Objects.equals(this.title, other.title)) {
-            return false;
-        }
-        if (!Objects.equals(this.director, other.director)) {
+        if (!Objects.equals(this.movieId, other.movieId)) {
             return false;
         }
         return true;
     }
     
+    
     @Override
     public String toString(){
-      return "\"" + title + "\" by "  + director;
+      return movieId + ": \"" + title + "\" by "  + director;
     }
 }
